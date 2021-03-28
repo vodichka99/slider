@@ -27,6 +27,24 @@ class SliderBlock extends Item{
         this.selector.style.transition = options.transition
         this.selector.style.flexDirection = options.direction
     }
+    nextF(){
+        if(slider.direction == 'row'){
+            t = t - tr
+            this.selector.style.transform = `translate(${t}px, 90px)`
+        }else if(slider.direction == 'column'){
+            t1 = t1 - tr1
+            this.selector.style.transform = `translate(-200px, ${t1}px)`
+        }
+    }
+    prevF(){
+        if(slider.direction == 'row'){
+            t = t + tr
+            this.selector.style.transform = `translate(${t}px, 90px)`
+        }else if(slider.direction == 'column'){
+            t1 = t1 + tr1
+            this.selector.style.transform = `translate(-200px, ${t1}px)`
+        }
+    }
 }
 
 const tr = 450
@@ -67,33 +85,15 @@ const prev = new Button({
 
 
 next.selector.addEventListener('click', function(){
-    nextF()
+    sliderBlock.nextF()
 })
 prev.selector.addEventListener('click', function(){
-    prevF()
+    sliderBlock.prevF()
 })
 
-function nextF(){
-    if(slider.direction == 'row'){
-        t = t - tr
-        sliderBlock.selector.style.transform = `translate(${t}px, 90px)`
-    }else if(slider.direction == 'column'){
-        t1 = t1 - tr1
-        sliderBlock.selector.style.transform = `translate(-200px, ${t1}px)`
-    }
-}
-function prevF(){
-    if(slider.direction == 'row'){
-        t = t + tr
-        sliderBlock.selector.style.transform = `translate(${t}px, 90px)`
-    }else if(slider.direction == 'column'){
-        t1 = t1 + tr1
-        sliderBlock.selector.style.transform = `translate(-200px, ${t1}px)`
-    }
-}
 if(slider.autoplay == true){
     function auto(){
-        nextF()
+        sliderBlock.nextF()
         setTimeout(auto, slider.interval)
     }
     setTimeout(auto, slider.interval)
