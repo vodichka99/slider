@@ -29,7 +29,7 @@
     position: absolute;
     left: 50%;
     top: 0;
-    /* transform: translate(-200px, 0); */
+    transform: translate(-200px, 90px);
 }
 .slider__item{
     margin-right: 50px;
